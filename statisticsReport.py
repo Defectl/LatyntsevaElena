@@ -77,9 +77,9 @@ class InputConect:
             file_name, vacancy_name = input_params
             vacancies_objects = DataSet(file_name).vacancies_objects
             InputConect.print_analytical_data(vacancies_objects, vacancy_name)
-            #report_excel = Report('Статистика по годам', 'Статистика по городам', '000000', 'thin', True)
-            #report_excel.generate_excel(vacancy_name)
-            #Report.generate_image(vacancy_name)
+            report_excel = Report('Статистика по годам', 'Статистика по городам', '000000', 'thin', True)
+            report_excel.generate_excel(vacancy_name)
+            Report.generate_image(vacancy_name)
             Report.generate_pdf(vacancy_name)
 
 
@@ -354,7 +354,7 @@ class Report:
         table_name_1 = 'Статистика по годам'
         table_name_2 = 'Статистика по городам'
 
-        image_url = 'C:\\Users\\elena\\PycharmProjects\\pythonProject13\\graph.png'
+        image_url = 'C:\\Users\\elena\\PycharmProjects\\LatyntsevaElena\\graph.png'
 
         env = Environment(loader=FileSystemLoader('.'))
         template = env.get_template("index.html")
