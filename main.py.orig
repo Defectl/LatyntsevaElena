@@ -1,7 +1,11 @@
 import statisticsReport
 import vacanciesTable
 
+<<<<<<< HEAD
 input_data = input('Вакансии или Статистика: ')
+=======
+input_data = input('вакансии или статистика: ')
+>>>>>>> develop
 
 if __name__ == '__main__':
     if input_data == 'Вакансии':
