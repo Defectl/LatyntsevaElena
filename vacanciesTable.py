@@ -191,9 +191,16 @@ class InputConect:
         """
         Возращает границы для печати таблицы.
         :param dictionary: Список, к которому будут применяться границы (list)
-        :param borders: Список из двух границ (list)
+        :param borders: Строка из двух границ (str)
         :return:
             int: левая граница вывода таблицы, права граница вывода таблицы
+
+        >>> InputConect.get_borders_table([1, 2, 3, 4, 5, 6], '')
+        (0, 6)
+        >>> InputConect.get_borders_table([1, 2, 3, 4, 5, 6], '2 4')
+        (1, 3)
+        >>> InputConect.get_borders_table([1, 2, 3, 4, 5, 6], '5')
+        (4, 6)
         """
         step = borders.split()
         step_start = int(step[0]) - 1 if len(step) > 0 else 0
@@ -311,6 +318,23 @@ class InputConect:
         :param vacancies_data: Список вакансий, к которому применяется фильтрация (list)
         :return:
             list: Отфильтрованный по определенному значению список с вакансиями
+
+        >>> len(InputConect.filter_dict_vacancies('Название', 'Аналитик', [Vacancy('Аналитик', 'Первый',[], '', '', '', Salary('', '', '',''), '', ''), Vacancy('программист', 'Второй',[], '', '', '', Salary('', '', '',''), '', ''), Vacancy('Аналитик', 'Третий',[], '', '', '', Salary('', '', '',''), '', '')]))
+        2
+        >>> len(InputConect.filter_dict_vacancies('Навыки', 'C#', [Vacancy('Аналитик', 'Первый',['C#'], '', '', '', Salary('', '', '',''), '', ''), Vacancy('программист', 'Второй',['C#', 'Python'], '', '', '', Salary('', '', '',''), '', ''), Vacancy('Аналитик', 'Третий',['C', 'Python'], '', '', '', Salary('', '', '',''), '', '')]))
+        2
+        >>> len(InputConect.filter_dict_vacancies('Навыки', 'C#, Python', [Vacancy('Аналитик', 'Первый',['C#'], '', '', '', Salary('', '', '',''), '', ''), Vacancy('программист', 'Второй',['C#', 'Python'], '', '', '', Salary('', '', '',''), '', ''), Vacancy('Аналитик', 'Третий',['C', 'Python'], '', '', '', Salary('', '', '',''), '', '')]))
+        1
+        >>> len(InputConect.filter_dict_vacancies('Оклад', '50000', [Vacancy('Аналитик', 'Первый',['C#'], '', '', '', Salary('40000', '60000', '',''), '', ''), Vacancy('программист', 'Второй',['C#', 'Python'], '', '', '', Salary('100000', '100000', '',''), '', ''), Vacancy('Аналитик', 'Третий',['C', 'Python'], '', '', '', Salary('20000', '30000', '',''), '', '')]))
+        1
+        >>> len(InputConect.filter_dict_vacancies('Опыт работы', 'Нет опыта', [Vacancy('Аналитик', 'Первый',['C#'], 'between3And6', '', '', Salary('40000', '60000', '',''), '', ''), Vacancy('программист', 'Второй',['C#', 'Python'], 'noExperience', '', '', Salary('100000', '100000', '',''), '', ''), Vacancy('Аналитик', 'Третий',['C', 'Python'], 'noExperience', '', '', Salary('20000', '30000', '',''), '', '')]))
+        2
+        >>> len(InputConect.filter_dict_vacancies('Идентификатор валюты оклада', 'Рубли', [Vacancy('Аналитик', 'Первый',['C#'], 'between3And6', '', '', Salary('40000', '60000', '',''), '', ''), Vacancy('программист', 'Второй',['C#', 'Python'], 'noExperience', '', '', Salary('100000', '100000', '',''), '', ''), Vacancy('Аналитик', 'Третий',['C', 'Python'], 'noExperience', '', '', Salary('20000', '30000', '',''), '', '')]))
+        0
+        >>> len(InputConect.filter_dict_vacancies('Дата публикации вакансии', '06.06.2006', [Vacancy('Аналитик', 'Первый',['C#'], 'between3And6', '', '', Salary('40000', '60000', '',''), '', '2006-06-06'), Vacancy('программист', 'Второй',['C#', 'Python'], 'noExperience', '', '', Salary('100000', '100000', '',''), '', '07.06.2006'), Vacancy('Аналитик', 'Третий',['C', 'Python'], 'noExperience', '', '', Salary('20000', '30000', '',''), '', '2006-06-06')]))
+        2
+        >>> len(InputConect.filter_dict_vacancies('Премиум-вакансия', 'Да', [Vacancy('Аналитик', 'Первый',['C#'], 'between3And6', 'True', '', Salary('40000', '60000', '',''), '', '2006-06-06'), Vacancy('программист', 'Второй',['C#', 'Python'], 'noExperience', '', '', Salary('100000', '100000', '',''), '', '07.06.2006'), Vacancy('Аналитик', 'Третий',['C', 'Python'], 'noExperience', '', '', Salary('20000', '30000', '',''), '', '2006-06-06')]))
+        1
         """
         if field in dictionary_keys.values():
             field = InputConect.get_key(dictionary_keys, field)
@@ -383,6 +407,11 @@ class DataSet:
         :param value: Строка (str)
         :return:
             str: Строка, отчищенная от тегов
+
+        >>> DataSet.delete_tags('No tags')
+        'No tags'
+        >>> DataSet.delete_tags('With<strong> tags')
+        'With tags'
         """
         temp_value = ''
         while value.find('<') != - 1:
@@ -428,9 +457,12 @@ class DataSet:
                             dic['employer_name'], Salary(dic['salary_from'], dic['salary_to'], dic['salary_gross'],
                             dic['salary_currency']), dic['area_name'], dic['published_at']))
             return vacancy_dictionary
-
-
 def main():
     """Создает объект InputConect, печатает данные в таблицу."""
     a = InputConect()
     a.print_data()
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
+
