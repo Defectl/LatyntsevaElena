@@ -23,3 +23,10 @@
 ![image](https://user-images.githubusercontent.com/101496751/205479908-f045b57d-95bb-4cc0-b488-3202282717e3.png)
 
 Оставлен второй вариант
+
+## Задание 3.2.1 Разделить данные
+
+Разделенные CSV файлы в файловой системе: 
+
+![image](https://user-images.githubusercontent.com/101496751/206699893-654d0d60-0778-47c9-99e2-1bb1bcaee65f.png)
+
