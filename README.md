@@ -46,3 +46,4 @@
 
 ![image](https://user-images.githubusercontent.com/101496751/206857497-4cea2a52-d5b8-49b6-9a46-39b08396c7ef.png)
 
+Для быстрой обработки статистики по годам необходим файл multiprocStatistic, с импортируемым файлом statisticsReport
