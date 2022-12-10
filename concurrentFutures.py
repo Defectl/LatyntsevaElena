@@ -1,9 +1,9 @@
-import multiprocessing
+import concurrent.futures as pool
+import time
 import statisticsReport
 from pathlib import Path
-import time
 
-vacancy_name = input('Введите название профессии: ')
+#vacancy_name = input('Введите название профессии: ')
 class PrintingStatistic:
     """
        Обрабатывает параметры вводимые пользователями: название файла, название профессии;
@@ -19,7 +19,7 @@ class PrintingStatistic:
     def print_data(self):
         """Печатает статистику на экран, создает таблицы, графики и отчет с данными."""
         vacancies_objects = statisticsReport.DataSet(self.file_name).vacancies_objects
-        return PrintingStatistic.print_analytical_data(vacancies_objects, vacancy_name)
+        return PrintingStatistic.print_analytical_data(vacancies_objects, 'Программист')
 
     @staticmethod
     def print_analytical_data(vacancies_objects, vacancy_name):
@@ -77,8 +77,8 @@ def get_multiproc():
     печатает статистику.
     """
     fname = [f for f in Path(input('Введите название папки: ')).glob('*.csv')]
-    with multiprocessing.Pool(processes=8) as p:
-        result = p.map(main, fname)
+    with pool.ThreadPoolExecutor(max_workers=4) as executer:
+        result = executer.map(main, fname)
     years_salary_dictionary = {}
     years_count_dictionary = {}
     years_salary_vacancy_dict = {}
@@ -98,8 +98,3 @@ if __name__ == '__main__':
     start_time = time.time()
     get_multiproc()
     print("--- %s seconds ---" % (time.time() - start_time))
-
-
-
-
-
