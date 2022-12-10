@@ -30,3 +30,12 @@
 
 ![image](https://user-images.githubusercontent.com/101496751/206699893-654d0d60-0778-47c9-99e2-1bb1bcaee65f.png)
 
+## Задание 3.2.2 Многопроцессорная обработка
+
+Время выполнения программы без многопроцессорной обработки:
+
+![image](https://user-images.githubusercontent.com/101496751/206856508-3c98af66-af10-4a1a-9fd4-2269b7d28a02.png)
+
+Время выполнения программы с многопроцессорной обработкой:
+
+![image](https://user-images.githubusercontent.com/101496751/206856517-89ab9fa6-b394-427b-af8f-c05953e7c405.png)
