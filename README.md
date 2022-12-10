@@ -30,3 +30,19 @@
 
 ![image](https://user-images.githubusercontent.com/101496751/206699893-654d0d60-0778-47c9-99e2-1bb1bcaee65f.png)
 
+## Задание 3.2.2 Многопроцессорная обработка
+
+Время выполнения программы без многопроцессорной обработки:
+
+![image](https://user-images.githubusercontent.com/101496751/206856508-3c98af66-af10-4a1a-9fd4-2269b7d28a02.png)
+
+Время выполнения программы с многопроцессорной обработкой:
+
+![image](https://user-images.githubusercontent.com/101496751/206857501-6ed4adc6-48cf-43c3-a16c-a13f876c86cf.png)
+
+## Задание 3.2.3 Concurrent futures
+
+Время выполнения программы с Concurrent futures:
+
+![image](https://user-images.githubusercontent.com/101496751/206857497-4cea2a52-d5b8-49b6-9a46-39b08396c7ef.png)
+
