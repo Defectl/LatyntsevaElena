@@ -38,4 +38,11 @@
 
 Время выполнения программы с многопроцессорной обработкой:
 
-![image](https://user-images.githubusercontent.com/101496751/206856517-89ab9fa6-b394-427b-af8f-c05953e7c405.png)
+![image](https://user-images.githubusercontent.com/101496751/206857501-6ed4adc6-48cf-43c3-a16c-a13f876c86cf.png)
+
+## Задание 3.2.3 Concurrent futures
+
+Время выполнения программы с Concurrent futures:
+
+![image](https://user-images.githubusercontent.com/101496751/206857497-4cea2a52-d5b8-49b6-9a46-39b08396c7ef.png)
+
