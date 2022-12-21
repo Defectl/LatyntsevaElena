@@ -47,3 +47,15 @@
 ![image](https://user-images.githubusercontent.com/101496751/206857497-4cea2a52-d5b8-49b6-9a46-39b08396c7ef.png)
 
 Для быстрой обработки статистики по годам необходим файл multiprocStatistic, с импортируемым файлом statisticsReport
+
+## Задание 3.3.1 Курсы валют
+
+Частотность, с которой встречаются различные валюты:
+
+![image](https://user-images.githubusercontent.com/101496751/208855245-0615eed0-bdaa-4e73-980f-b2d2f322c8bc.png)
+
+Новые разделенные CSV-файлы:
+
+![image](https://user-images.githubusercontent.com/101496751/208855324-1d86026f-5db9-4a03-8ffb-b91660c47e42.png)
+
+
