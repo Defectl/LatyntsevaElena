@@ -4,6 +4,12 @@ venv/
 
 CSV_files_years/
 
+CSV_files_years_new/
+
 vacancies.csv
 
 vacancies_by_year.csv
+
+vacancies_dif_currencies.csv
+
+currencyRate.csv
