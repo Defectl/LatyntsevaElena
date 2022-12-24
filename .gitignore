@@ -15,3 +15,5 @@ vacancies_by_year.csv
 vacancies_dif_currencies.csv
 
 currencyRate.csv
+
+middleSalaryRURPandas.py
