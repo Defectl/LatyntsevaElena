@@ -2,6 +2,12 @@ import pandas as pd
 import pdfkit
 
 def get_dataframe(file, vacancy):
+    """
+    Создает датафрейм со статистикой по годам.
+    :param file: Файл с вакансиями
+    :param vacancy: Название вакансии
+    :return: датафрейм со статистикой по годам
+    """
     vacancies = pd.read_csv(file)
     vacancies['Год'] = vacancies['published_at'].str[:4]
     vacancies_salary = round(vacancies[['Год', 'salary']].groupby('Год').mean())
@@ -19,6 +25,10 @@ def get_dataframe(file, vacancy):
     return statistic
 
 def get_pdf(dataframe):
+    """
+    Создает html-страницу с датафреймом и конвертирует ее в пдф.
+    :param dataframe: Датафрейм со статистикой
+    """
     #dataframe.to_html('statisticPandas.html', index=False)
     config = pdfkit.configuration(wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
     pdfkit.from_file(r'C:\Users\elena\PycharmProjects\LatyntsevaElena\statisticPandas.html', 'statisticPandas.pdf',
