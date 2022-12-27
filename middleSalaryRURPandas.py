@@ -19,17 +19,10 @@ def formatter(file, curr_dict_date):
     vacancies['date'] = vacancies['published_at'].str[:7]
     vacancies = pd.merge(vacancies, val_curs, how='left', on='date')
     vacancies['salary'] = np.nan
-<<<<<<< HEAD
-    for curr in list(currencies):
-        vacancies.loc[vacancies['salary_currency'] == curr, 'salary'] = round(vacancies[curr] * vacancies['salary_not_rur'])
-        vacancies.loc[vacancies[curr] == 0, 'salary'] = np.nan
-    vacancies.loc[vacancies['salary_currency'] == 'RUR', 'salary'] = vacancies['salary_not_rur']
-=======
     vacancies.loc[vacancies['salary_currency'] == 'RUR', 'salary'] = vacancies['salary_not_rur']
     for curr in list(currencies):
         vacancies.loc[vacancies['salary_currency'] == curr, 'salary'] = round(vacancies[curr] * vacancies['salary_not_rur'])
         vacancies.loc[vacancies[curr] == 0, 'salary'] = np.nan
->>>>>>> 599a31d69c7d2465a6b80983baa1b6f53fd55577
     vacancies['salary'] = vacancies['salary'].astype(float)
     new_vacancies = vacancies[['name', 'salary', 'area_name', 'published_at']]
     new_vacancies.to_csv(f'{Path(file).stem}.csv', index=False)
