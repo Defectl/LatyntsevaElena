@@ -1,5 +1,6 @@
 import pandas as pd
 import pdfkit
+from jinja2 import Environment, FileSystemLoader
 
 def get_dataframe(file, vacancy):
     """
@@ -29,10 +30,14 @@ def get_pdf(dataframe):
     Создает html-страницу с датафреймом и конвертирует ее в пдф.
     :param dataframe: Датафрейм со статистикой
     """
-    #dataframe.to_html('statisticPandas.html', index=False)
+    env = Environment(loader=FileSystemLoader('.'))
+    dataframe.to_html(index=False)
+    template = env.get_template('statisticPandas.html')
+    pdf_template = template.render({'table': dataframe.to_html(index=False)})
     config = pdfkit.configuration(wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
-    pdfkit.from_file(r'C:\Users\elena\PycharmProjects\LatyntsevaElena\statisticPandas.html', 'statisticPandas.pdf',
+    pdfkit.from_string(pdf_template, 'statisticPandas.pdf',
                        configuration=config, options={"enable-local-file-access": ""})
+
 
 if __name__ == '__main__':
     file = input('Введите название файла: ')
