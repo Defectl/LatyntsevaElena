@@ -13,9 +13,9 @@ def get_dataframe(file, vacancy):
     vacancies['Год'] = vacancies['published_at'].str[:4]
     vacancies_salary = round(vacancies[['Год', 'salary']].groupby('Год').mean())
     vacancies_count = vacancies.groupby('Год')['name'].count()
-    vacancy_salary = round(vacancies[vacancies['name'].str.lower().str.contains(f'{vacancy}')][['Год', 'salary']]
+    vacancy_salary = round(vacancies[vacancies['name'].str.lower().str.contains(f'{vacancy}'.lower())][['Год', 'salary']]
                            .groupby('Год').mean())
-    vacancy_count = vacancies[vacancies['name'].str.lower().str.contains(f'{vacancy}')].groupby('Год')['name'].count()
+    vacancy_count = vacancies[vacancies['name'].str.lower().str.contains(f'{vacancy}'.lower())].groupby('Год')['name'].count()
     statistic_vacancies = pd.merge(vacancies_salary, vacancies_count, how='left', on='Год')
     statistic_vacancies.rename(columns={'salary': 'Средняя зарплата', 'name': 'Количество вакансий'}, inplace=True)
     statistic_vacancy = pd.merge(vacancy_salary, vacancy_count, how='left', on='Год')
@@ -31,7 +31,6 @@ def get_pdf(dataframe):
     :param dataframe: Датафрейм со статистикой
     """
     env = Environment(loader=FileSystemLoader('.'))
-    dataframe.to_html(index=False)
     template = env.get_template('statisticPandas.html')
     pdf_template = template.render({'table': dataframe.to_html(index=False)})
     config = pdfkit.configuration(wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
